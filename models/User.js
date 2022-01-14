@@ -2,9 +2,6 @@ const {
     Schema,
     model
 } = require("mongoose");
-const {
-    ModuleKind
-} = require("typescript");
 
 const UserSchema = new Schema({
     username: {
