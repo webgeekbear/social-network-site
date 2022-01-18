@@ -42,6 +42,7 @@ const ThoughtController = {
 
     // createThought
     createThought({
+        params,
         body
     }, res) {
         Thought.create(body)
