@@ -1,0 +1,24 @@
+{
+  "name": "social-network-site",
+  "version": "1.0.0",
+  "description": "Back end for a social network sight",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webgeekbear/social-network-site.git"
+  },
+  "author": "David Barron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webgeekbear/social-network-site/issues"
+  },
+  "homepage": "https://github.com/webgeekbear/social-network-site#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongoose": "^6.1.6"
+  }
+}

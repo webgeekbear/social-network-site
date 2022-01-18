@@ -29,7 +29,7 @@ const ThoughtController = {
                 _id: params.id
             })
             .populate({
-                path: 'thought',
+                path: 'reactions',
                 select: '-__v'
             })
             .select('-__v')

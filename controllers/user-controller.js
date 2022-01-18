@@ -40,7 +40,7 @@ const userController = {
                 path: "friends",
                 select: "-__v"
             })
-            .select("-__")
+            .select("-__v")
             .then(dbUserData => res.json(dbUserData))
             .catch(err => {
                 console.log(err);
@@ -89,7 +89,62 @@ const userController = {
             })
             .then(dbUserData => res.json(dbUserData))
             .catch(err => res.json(err));
-    }
-};
+    },
+
+    // Add friend to user
+    addFriendToUser({
+        params,
+        body
+    }, res) {
+        User.findOneAndUpdate({
+                _id: params.userId
+            }, {
+                $push: {
+                    friends: params.friendId
+                }
+            }, {
+                new: false,
+                runValidators: true
+            })
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({
+                        message: 'No user found with this id!'
+                    });
+                    return;
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => res.json(err));
+    },
+    deleteFriendFromUser({
+        params
+    }, res) {
+        User.findOneAndUpdate({
+                _id: params.userId
+            })
+            .then(() => {
+                return User.findOneAndUpdate({
+                    _id: params.userId
+                }, {
+                    $pull: {
+                        friends: params.friendId
+                    }
+                }, {
+                    new: false
+                });
+            })
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({
+                        message: 'No user found with this id!'
+                    });
+                    return;
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => res.json(err));
+    },
+}
 
 module.exports = userController;

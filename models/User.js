@@ -14,7 +14,7 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        validate: [validateEmail, "Not a valid email address"]
+        email: 1
     },
     thoughts: {
         type: [{
@@ -38,6 +38,6 @@ UserSchema.virtual("friendCount").get(function () {
     return this.friends.length;
 });
 
-const User = model("user", UserSchema);
+const User = model("User", UserSchema);
 
 module.exports = User;
