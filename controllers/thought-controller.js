@@ -1,5 +1,6 @@
 const {
-    Thought
+    Thought,
+    Reaction
 } = require('../models');
 
 const ThoughtController = {
@@ -82,6 +83,33 @@ const ThoughtController = {
             })
             .then(dbThoughtData => res.json(dbThoughtData))
             .catch(err => res.json(err));
+    },
+    addReactionToThought({params}, res) {
+        let reaction = new Reaction({});
+        Thought.findOneAndUpdate({
+            _id: params.thoughtId
+        }, {
+            $push: {
+                reactions: reaction
+            }
+        }, {
+            new: true,
+            runValidators: true
+        })
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({
+                    message: 'No thought found with this id!'
+                });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => res.json(err));
+
+    },
+    removeReactionFromThought({params}, res) {
+        
     }
 };
 
