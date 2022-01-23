@@ -1,8 +1,8 @@
 # Social Networking Site
 ![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)
-%20 
+
 ## Description
-Back end for a social networing site
+Back end for a social networking site
 
 ## Table of Contents
 
@@ -12,7 +12,7 @@ Back end for a social networing site
 * [Technologies](#technologies)
 * [Video](#video)
 ## Installation
-npm i
+npm install
 
 ## Usage
 npm start
